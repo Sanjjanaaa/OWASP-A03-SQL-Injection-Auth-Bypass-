@@ -1,0 +1,77 @@
+# Testing Methodology
+
+## Objective
+
+The objective of the testing process was to identify and exploit SQL Injection vulnerabilities in the authentication mechanism of the target web application.
+
+---
+
+## Step 1: Identify Input Fields
+
+The login page was analyzed to identify user input fields that interact with the backend database.
+
+The application contained the following fields:
+
+- Username
+- Password
+
+These fields were suspected to interact with SQL queries.
+
+---
+
+## Step 2: Intercept Request Using Burp Suite
+
+Burp Suite was configured as a proxy to intercept HTTP requests between the browser and the server.
+
+Steps performed:
+
+1. Configure browser proxy to Burp Suite
+2. Enable intercept mode
+3. Submit login credentials
+4. Capture the HTTP POST request
+
+---
+
+## Step 3: Analyze HTTP Request
+
+Captured request example:
+
+POST /login HTTP/1.1
+
+username=admin&password=admin123
+
+The parameters were then tested for injection vulnerabilities.
+
+---
+
+## Step 4: Inject SQL Payload
+
+A common SQL Injection payload was inserted into the username field:
+
+' OR '1'='1
+
+Modified request:
+
+username=' OR '1'='1&password=anything
+
+This payload attempts to manipulate the SQL query logic.
+
+---
+
+## Step 5: Forward Request
+
+The modified request was forwarded to the server using Burp Suite.
+
+---
+
+## Step 6: Observe Application Response
+
+The server returned a successful login response, indicating that the authentication mechanism was bypassed.
+
+This confirmed the presence of a SQL Injection vulnerability.
+
+---
+
+## Conclusion
+
+The authentication mechanism is vulnerable to SQL Injection due to improper input sanitization and insecure query construction.
