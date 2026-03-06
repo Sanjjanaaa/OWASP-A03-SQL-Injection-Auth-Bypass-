@@ -1,0 +1,117 @@
+1️⃣ Executive Summary
+
+Identified SQL Injection vulnerability in login authentication mechanism.
+
+Vulnerability allowed authentication bypass.
+
+Risk level: High
+
+Impact: Unauthorized access to application
+
+2️⃣ Scope of Testing
+Target: Intentionally vulnerable web application / lab
+
+Testing Type: Authorized security testing
+
+Methodology: Manual + Proxy-based testing using Burp Suite
+
+3️⃣ Methodology
+Step 1 – Recon / Input Identification
+
+Identified login parameters (username, password)
+
+Captured HTTP POST request via Burp Proxy
+
+Step 2 – Injection Testing
+
+Sent special characters (', ", --)
+
+Observed response variation
+
+Identified lack of input sanitization
+
+Step 3 – Authentication Logic Manipulation
+
+Injected boolean-based SQL payload
+
+Confirmed bypass when application granted access
+
+
+
+4️⃣ Technical Vulnerability Analysis
+
+Vulnerability Type:
+
+SQL Injection – Authentication Bypass
+
+Root Cause:
+
+Backend query concatenated user input directly
+
+No prepared statements
+
+No parameterized queries
+
+Vulnerable Query (Reconstructed):
+SELECT * FROM users 
+WHERE username = '$username' 
+AND password = '$password';
+
+
+
+5️⃣ Proof of Concept (PoC)
+
+Your screenshots should show:
+
+Login page
+
+Burp request intercept
+
+Modified payload
+
+Successful login response
+
+Session cookie issued
+
+
+
+6️⃣ Risk Analysis
+Impact:
+
+Unauthorized user access
+
+Admin privilege abuse
+
+Data exfiltration possibility
+
+Full database compromise
+
+High severity (Authentication Bypass)
+
+
+
+7️⃣ Remediation
+
+Mention:
+
+Use Prepared Statements
+
+Parameterized Queries
+
+ORM Framework
+
+Server-side validation
+
+WAF deployment
+
+Generic error messages
+
+Example secure implementation:
+
+$stmt = $pdo->prepare("SELECT * FROM users WHERE username = ? AND password = ?");
+$stmt->execute([$username, $password]);
+  
+8️⃣ Mapping to OWASP
+
+Category: A03 – Injection
+
