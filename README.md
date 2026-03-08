@@ -82,7 +82,7 @@ Deploy WAF
 
 📸 Proof of Concept
 
-Screenshots available in /screenshots directory.
+Screenshots available in https://github.com/Sanjjanaaa/OWASP-A03-SQL-Injection-Auth-Bypass-/tree/main/Screenshots directory.
 
 ⚖️ Ethical Disclaimer
 
