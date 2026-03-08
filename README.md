@@ -38,6 +38,7 @@ Severity: High
 
 
 🧪 Methodology
+https://github.com/Sanjjanaaa/OWASP-A03-SQL-Injection-Auth-Bypass-/tree/main/Methodology
 
 Intercepted login POST request using Burp Proxy.
 
