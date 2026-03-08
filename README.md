@@ -67,6 +67,7 @@ Unauthorized session creation
 
 
 🛡 Remediation
+https://github.com/Sanjjanaaa/OWASP-A03-SQL-Injection-Auth-Bypass-/tree/main/Remediation
 
 Use parameterized queries
 
